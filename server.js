@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
+const data = require('./public/data')
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,6 +29,10 @@ app.get('/json', (request, response) => {
 
 app.get('/sunsets', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, 'public/sunsets.html'))
+})
+
+app.get('/data', (req, res) => {
+  res.status(200).json({data: data});
 })
 
 app.listen(3000, () => {
