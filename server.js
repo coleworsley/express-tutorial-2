@@ -16,10 +16,7 @@ const timeLogger = (request, response, next) => {
   next();
 };
 
-
-app.use('/sunsets', express.static(path.join(__dirname, 'public/images')))
 app.use(urlLogger, timeLogger);
-app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (request, response) => {
   response.send('hello world');
@@ -30,7 +27,7 @@ app.get('/json', (request, response) => {
 });
 
 app.get('/sunsets', (req, res) => {
-  res.status(200).send('hello')
+  res.status(200).sendFile(path.join(__dirname, 'public/sunsets.html'))
 })
 
 app.listen(3000, () => {
